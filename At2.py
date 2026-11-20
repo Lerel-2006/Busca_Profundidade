@@ -1,4 +1,4 @@
-
+#Detectar ciclos
 grafo = {
     'A': ['B', 'C'],
     'B': ['A', 'C'],
@@ -6,8 +6,10 @@ grafo = {
     'D': ['C']
 }
 
+
 def listarVizinhosVertice(grafo, vertice):
     lista = []
+
     if vertice in grafo:
         for v in grafo[vertice]:
             lista.append(v)
@@ -18,6 +20,7 @@ def listarVizinhosVertice(grafo, vertice):
 def detectarCiclo(grafo):
     visitados = []
     pilha = []
+    possuiCiclo = False
 
     for inicio in grafo:
 
@@ -52,13 +55,16 @@ def detectarCiclo(grafo):
                             })
 
                         elif vizinho != pai:
-                            print("Vértices visitados:", visitados)
-                            print("O grafo possui ciclo!")
-                            return True
+                            possuiCiclo = True
 
     print("Vértices visitados:", visitados)
-    print("O grafo não possui ciclo!")
-    return False
+
+    if possuiCiclo:
+        print("O grafo possui ciclo!")
+    else:
+        print("O grafo não possui ciclo!")
+
+    return possuiCiclo
 
 
 detectarCiclo(grafo)
